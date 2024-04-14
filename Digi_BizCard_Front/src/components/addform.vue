@@ -1,40 +1,117 @@
 <template>
-    <div>
-      <form @submit.prevent="submitForm" class="mt-4">
-        <div class="form-group">
-          <label for="user_id">User ID:</label>
-          <input type="text" v-model="formData.user_id" class="form-control" id="user_id">
-        </div>
-        <div class="form-group">
-          <label for="logo">Logo:</label>
-          <input type="file" class="form-control-file" id="logo">
-        </div>
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" v-model="formData.title" class="form-control" id="title">
-        </div>
-        <div class="form-group">
-          <label for="slogan">Slogan:</label>
-          <input type="text" v-model="formData.slogan" class="form-control" id="slogan">
-        </div>
-        <div class="form-group">
-          <label for="phonenumber">Phone Number:</label>
-          <input type="text" v-model="formData.phonenumber" class="form-control" id="phonenumber">
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" v-model="formData.email" class="form-control" id="email">
-        </div>
-        <div class="form-group">
-          <label for="address">Address:</label>
-          <input type="text" v-model="formData.address" class="form-control" id="address">
-        </div>
-        <div class="form-group">
-          <label for="website">Website:</label>
-          <input type="url" v-model="formData.website" class="form-control" id="website">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+  <div>
+    <div class="bck">
+      <div class="container mx-auto text-center">
+        <form @submit.prevent="addCard" class="form p-3 border border-secondary rounded">
+          <div class="form-group">
+            <label for="logo">Logo</label>
+            <input type="file" id="logo" @change="handleLogoUpload" accept="image/*" class="form-control-file">
+          </div>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" v-model="newCard.title" placeholder="Title">
+          </div>
+          <div class="form-group">
+            <label for="slogan">Slogan</label>
+            <input type="text" class="form-control" v-model="newCard.slogan" placeholder="Slogan">
+          </div>
+          <div class="form-group">
+            <label for="phonenumber">Phone Number</label>
+            <input type="text" class="form-control" v-model="newCard.phonenumber" placeholder="Phone Number">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" v-model="newCard.email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" v-model="newCard.address" placeholder="Address">
+          </div>
+          <div class="form-group">
+            <label for="website">Website</label>
+            <input type="text" class="form-control" v-model="newCard.website" placeholder="Website">
+          </div>
+          <button type="submit" class="btn btn-primary">Add Card</button>
+        </form>
+      </div>
     </div>
-  </template>
-  
+ 
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      cards: [],
+      newCard: {
+        logo: '', 
+        title: '',
+        slogan: '',
+        phonenumber: '',
+        email: '',
+        address: '',
+        website: ''
+        
+      }
+    };
+  },
+  mounted() {
+    this.getUserCards();
+  },
+  methods: {
+    async getUserCards() {
+      try {
+        const token = localStorage.getItem('access_token');
+        const response = await axios.get('http://127.0.0.1:8000/api/user', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        this.cards = response.data;
+      } catch (error) {
+        console.error('Error fetching user cards:', error);
+      }
+    },
+    async addCard() {
+      try {
+        const token = localStorage.getItem('access_token');
+        const response = await axios.post('http://127.0.0.1:8000/api/cards/add', this.newCard, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log('Card added:', response.data);
+
+        this.clearForm();
+
+        this.getUserCards();
+      } catch (error) {
+        console.error('Error adding card:', error);
+      }
+    },
+    handleLogoUpload(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.newCard.logo = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    clearForm() {
+      
+      this.newCard = {
+        title: '',
+        slogan: '',
+        phonenumber: '',
+        email: '',
+        address: '',
+        website: '',
+        logo: ''
+      };
+    }
+  }
+};
+</script>

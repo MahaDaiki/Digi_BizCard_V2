@@ -1,24 +1,19 @@
 <script setup>
-import axios from 'axios';
-import { useRouter } from 'vue-router';
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
 const logoutUser = async () => {
   try {
-    await axios.post('http://127.0.0.1:8000/api/logout');
-    console.log('Logout successful');
-   
-    router.push('/login'); 
+    localStorage.removeItem('access_token')
+    router.push('/login')
   } catch (error) {
-    console.error('Logout failed:', error);
-    
+    console.error('Logout failed:', error)
   }
-};
+}
 </script>
 
 <template>
-    <div>
-        <h1>Logging Out</h1>
-    </div>
+  <button @click="logoutUser">Logout</button>
 </template>

@@ -1,11 +1,8 @@
 <script setup>
-
 import register from '../components/Register.vue'
 </script>
 <template>
- <register/>
+  <register />
 </template>
 
-<style>
-
-</style>
+<style></style>

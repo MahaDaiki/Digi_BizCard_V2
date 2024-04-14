@@ -1,24 +1,29 @@
-
 <script setup>
-import axios from 'axios';
-import { ref } from 'vue';
+import axios from 'axios'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router' 
 
-const email = ref('');
-const password = ref('');
+const email = ref('')
+const password = ref('')
+const router = useRouter() 
 
 const loginUser = async () => {
   try {
     const response = await axios.post('http://127.0.0.1:8000/api/login', {
       email: email.value,
       password: password.value
-    });
-    console.log('Login successful', response.data);
+    })
+    console.log('Login successful', response.data)
+    localStorage.setItem('access_token', response.data.access_token);
+    
     router.push('/');
   } catch (err) {
-    console.error('Login failed:', err.response.data.message);
+    console.error('Login failed:', err.response.data.message)
   }
-};
+}
+
 </script>
+
 
 <template>
   <section class="background-radial-gradient overflow-hidden">
@@ -47,14 +52,12 @@ const loginUser = async () => {
                   <input type="email" id="email" v-model="email" class="form-control" />
                 </div>
 
-                <div class="form-outline mb-4"> 
+                <div class="form-outline mb-4">
                   <label class="form-label" for="password">Password</label>
                   <input type="password" id="password" v-model="password" class="form-control" />
                 </div>
-   
-                <button type="submit" class="btn btn-primary mb-4">
-                  Sign in
-                </button> 
+
+                <button type="submit" class="btn btn-primary mb-4">Sign in</button>
                 <p>Don't have an account?<router-link to="/register"> Register</router-link></p>
               </form>
             </div>
@@ -64,4 +67,3 @@ const loginUser = async () => {
     </div>
   </section>
 </template>
-

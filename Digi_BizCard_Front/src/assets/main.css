@@ -33,7 +33,10 @@ a,
     padding: 0 2rem;
   }
 } */
-.cover {   
+#app{
+  background-color: #cae0f7;
+}
+.cover {
   height: 100vh;
   color: #000000;
   text-align: center;
@@ -54,42 +57,109 @@ a,
 }
 
 /* login */
- .background-radial-gradient {
-      background-color: hsl(218, 41%, 15%);
-      background-image: radial-gradient(650px circle at 0% 0%,
-          hsl(218, 41%, 35%) 15%,
-          hsl(218, 41%, 30%) 35%,
-          hsl(218, 41%, 20%) 75%,
-          hsl(218, 41%, 19%) 80%,
-          transparent 100%),
-        radial-gradient(1250px circle at 100% 100%,
-          hsl(218, 41%, 45%) 15%,
-          hsl(218, 41%, 30%) 35%,
-          hsl(218, 41%, 20%) 75%,
-          hsl(218, 41%, 19%) 80%,
-          transparent 100%);
-    }
+.background-radial-gradient {
+  background-color: hsl(218, 41%, 15%);
+  background-image: radial-gradient(
+      650px circle at 0% 0%,
+      hsl(218, 41%, 35%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1250px circle at 100% 100%,
+      hsl(218, 41%, 45%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%
+    );
+}
 
-    #radius-shape-1 {
-      height: 220px;
-      width: 220px;
-      top: -60px;
-      left: -130px;
-      background: radial-gradient(#3d3a3e, #545156);
-      overflow: hidden;
-    }
+#radius-shape-1 {
+  height: 220px;
+  width: 220px;
+  top: -60px;
+  left: -130px;
+  background: radial-gradient(#3d3a3e, #545156);
+  overflow: hidden;
+}
 
-    #radius-shape-2 {
-      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-      bottom: -60px;
-      right: -110px;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(#3d3a3e, #545156);
-      overflow: hidden;
-    }
+#radius-shape-2 {
+  border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+  bottom: -60px;
+  right: -110px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(#3d3a3e, #545156);
+  overflow: hidden;
+}
 
-    .bg-glass {
-      background-color: hsla(0, 0%, 100%, 0.9) !important;
-      backdrop-filter: saturate(200%) blur(25px);
-    }
+.bg-glass {
+  background-color: hsla(0, 0%, 100%, 0.9) !important;
+  backdrop-filter: saturate(200%) blur(25px);
+}
+.container.card {
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+ 
+}
+.form{
+  width: 50%; 
+  background-color: #968f8f;
+  
+}
+
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+.form-control {
+  width: 50%; 
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.bck {
+  height: 100vh;
+  color: #000000;
+  background-image: url('images/bacjground.jpg');
+  background-size: cover;
+}
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover, .social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}

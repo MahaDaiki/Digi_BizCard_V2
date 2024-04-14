@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <div class="cover d-flex" >
+  <div class="cover d-flex">
     <div class="container">
       <h1 class="display-3">Welcome to Digi BizCard</h1>
       <p class="lead">Make your business Card.</p>
@@ -19,6 +19,4 @@
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
